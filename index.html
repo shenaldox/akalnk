@@ -3,28 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M.R. Akalanka Ranasinghe | Premium Tutor</title>
+    <title>M.R. Akalanka Ranasinghe | English Tutor</title>
+    <!-- Fonts & Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
+        /* --- CSS VARIABLES & RESET --- */
         :root {
             --primary: #4e54c8;
             --secondary: #8f94fb;
-            --accent: #00f260;
-            --dark: #0f0c29;
-            --glass-bg: rgba(255, 255, 255, 0.05);
+            --accent: #00d2ff;
+            --glass-bg: rgba(15, 12, 41, 0.7);
             --glass-border: rgba(255, 255, 255, 0.1);
             --text-light: #ffffff;
-            --text-dim: #b3b3b3;
-            --gradient-main: linear-gradient(135deg, #4e54c8, #8f94fb);
-            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --text-dim: #e0e0e0;
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         }
 
         * {
@@ -34,766 +28,679 @@
             scroll-behavior: smooth;
         }
 
+        html {
+            scroll-padding-top: 90px; 
+        }
+
         body {
-            font-family: 'Outfit', sans-serif;
-            background: var(--dark);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
             color: var(--text-light);
             overflow-x: hidden;
-            line-height: 1.6;
+            min-height: 100vh;
         }
 
-        /* --- Loading Animation --- */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--dark);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease-out;
-        }
-
-        .spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(255,255,255,0.1);
-            border-left-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* --- Global Animations --- */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Background Graphics --- */
-        .bg-shapes {
+        /* --- BACKGROUND ANIMATION --- */
+        .bg-animation {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            overflow: hidden;
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
         }
 
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Shapes */
         .shape {
             position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
-            animation: float 10s infinite ease-in-out alternate;
+            filter: blur(50px);
+            z-index: -1;
+            animation: floatShape 10s infinite alternate;
         }
+        .shape-1 { top: 10%; left: 10%; width: 300px; height: 300px; background: var(--primary); opacity: 0.3; }
+        .shape-2 { bottom: 10%; right: 10%; width: 250px; height: 250px; background: var(--accent); opacity: 0.3; animation-delay: -5s; }
 
-        .shape-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: var(--primary); }
-        .shape-2 { bottom: -10%; right: -10%; width: 40vw; height: 40vw; background: #ff007a; animation-delay: -5s; }
-        .shape-3 { top: 40%; left: 40%; width: 20vw; height: 20vw; background: var(--accent); opacity: 0.2; animation-delay: -2s; }
-
-        @keyframes float {
+        @keyframes floatShape {
             0% { transform: translate(0, 0); }
-            100% { transform: translate(20px, 40px); }
+            100% { transform: translate(30px, 50px); }
         }
 
-        /* --- Navigation --- */
+        /* --- UTILITIES --- */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 4px;
+            background: var(--accent);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #0f0c29;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid #FFF;
+            border-bottom-color: var(--accent);
+            border-radius: 50%;
+            animation: rotation 1s linear infinite;
+        }
+        @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* --- NAVIGATION --- */
         nav {
-            padding: 1.5rem 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 0;
+            z-index: 1000;
+            transition: 0.3s;
+            background: rgba(15, 12, 41, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--glass-border);
         }
-
         .logo {
-            font-family: 'Space Grotesk', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
-            background: linear-gradient(to right, #fff, #8f94fb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #fff;
+            text-decoration: none;
+            z-index: 1001;
         }
-
+        .logo span { color: var(--accent); }
+        
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 25px;
+            list-style: none;
         }
-
-        .nav-links a {
-            text-decoration: none;
+        .nav-links li a {
             color: var(--text-light);
+            text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
-            font-size: 0.9rem;
+            transition: 0.3s;
+            position: relative;
+            font-size: 1rem;
+        }
+        .nav-links li a:hover { color: var(--accent); }
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--accent);
+            transition: 0.3s;
+        }
+        .nav-links li a:hover::after { width: 100%; }
+
+        /* Hamburger Menu (Mobile) */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            transition: all 0.3s ease-in-out;
+            background-color: #fff;
         }
 
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        /* --- Hero Section --- */
-        header {
+        /* --- HERO SECTION --- */
+        .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 1rem;
-            position: relative;
+            padding-top: 60px; 
         }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            line-height: 1.1;
-            margin-bottom: 1rem;
+        .hero-content {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.5s;
+        }
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top; /* Focus on face */
+            border: 4px solid var(--accent);
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px var(--accent);
+        }
+        .hero h1 {
+            font-size: 3.5rem;
             font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 10px;
+            line-height: 1.2;
         }
-
-        .hero-content h1 span {
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
             color: var(--accent);
+            margin-bottom: 30px;
         }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            color: var(--text-dim);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-
-        .btn-glow {
+        .cta-btn {
             display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--gradient-main);
+            padding: 12px 30px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 30px;
             font-weight: 600;
-            box-shadow: 0 0 20px rgba(78, 84, 200, 0.5);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(78, 84, 200, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+        .cta-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(78, 84, 200, 0.6);
         }
 
-        .btn-glow:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 30px rgba(78, 84, 200, 0.8);
-        }
-
-        /* --- Sections General --- */
-        section {
-            padding: 6rem 10%;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 4rem;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .section-title span {
-            border-bottom: 3px solid var(--accent);
-        }
-
-        /* --- Glassmorphism Card Style --- */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        /* --- About Section --- */
-        .about-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .tutor-img-wrapper {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 2px solid var(--glass-border);
-        }
-
-        .tutor-img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s;
-        }
-
-        .tutor-img-wrapper:hover .tutor-img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .role-badge {
-            display: inline-block;
-            background: rgba(0, 242, 96, 0.1);
-            color: var(--accent);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(0, 242, 96, 0.3);
-        }
-
-        /* --- Schedule Section --- */
-        .schedule-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .time-card {
-            text-align: center;
-        }
-
-        .time-icon {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-
-        .time-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .time-badge {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 0.3rem 0.8rem;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            display: inline-block;
-            margin-top: 0.5rem;
-        }
-
-        /* --- Tech Stack (Python/C++/SQL) --- */
+        /* --- TECH STACK (VISUALIZER) --- */
+        .tech-section { padding: 80px 0; }
         .tech-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .code-window {
-            background: #1e1e1e;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .window-header {
-            background: #2d2d2d;
-            padding: 0.5rem 1rem;
-            display: flex;
-            gap: 8px;
-        }
-
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .red { background: #ff5f56; }
-        .yellow { background: #ffbd2e; }
-        .green { background: #27c93f; }
-
-        .code-content {
-            padding: 1.5rem;
-            font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
-            color: #d4d4d4;
-            overflow-x: auto;
-        }
-
-        .kw { color: #569cd6; } /* Keyword */
-        .str { color: #ce9178; } /* String */
-        .fn { color: #dcdcaa; } /* Function */
-        .com { color: #6a9955; } /* Comment */
-
-        /* --- Certifications --- */
-        .cert-grid {
-            display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            gap: 20px;
+        }
+        .tech-card {
+            padding: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .tech-card:hover { background: rgba(255, 255, 255, 0.15); transform: translateY(-5px); }
+        .tech-icon { font-size: 2.5rem; margin-bottom: 15px; color: var(--accent); }
+        .code-snippet {
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-top: 10px;
+            background: rgba(0,0,0,0.3);
+            padding: 5px;
+            border-radius: 5px;
+            display: block;
         }
 
-        .cert-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .cert-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-main);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        /* --- Application Form --- */
-        #apply {
+        /* --- SCHEDULE SECTION --- */
+        .schedule-section { padding: 80px 0; }
+        .timeline {
+            position: relative;
             max-width: 800px;
             margin: 0 auto;
         }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: rgba(255,255,255,0.1);
+            top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 2px;
+        }
+        .schedule-card {
+            padding: 20px 30px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+        .schedule-card.left { left: 0; text-align: right; }
+        .schedule-card.right { left: 50%; text-align: left; }
+        
+        .schedule-card::after {
+            content: ''; position: absolute; width: 20px; height: 20px;
+            background: var(--accent); border: 4px solid #fff; top: 25px;
+            border-radius: 50%; z-index: 1;
+        }
+        .schedule-card.left::after { right: -14px; }
+        .schedule-card.right::after { left: -14px; }
 
-        .form-group {
-            margin-bottom: 1.5rem;
+        .schedule-content {
+            padding: 20px; transition: 0.3s;
+        }
+        .schedule-content:hover { background: rgba(255, 255, 255, 0.2); }
+        .time-badge {
+            display: inline-block; background: var(--primary);
+            padding: 5px 12px; border-radius: 12px; font-size: 0.85rem; margin-bottom: 10px;
         }
 
+        /* --- CERTIFICATIONS --- */
+        .cert-section { padding: 80px 0; }
+        .cert-grid {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;
+        }
+        .cert-item {
+            display: flex; align-items: center; gap: 15px;
+            padding: 20px 30px; min-width: 300px;
+        }
+        .cert-icon { font-size: 2rem; color: #00ff88; }
+
+        /* --- APPLICATION FORM --- */
+        .apply-section { padding: 80px 0; padding-bottom: 100px; }
+        .form-container {
+            max-width: 600px; margin: 0 auto; padding: 40px;
+        }
+        .form-group { margin-bottom: 20px; position: relative; }
         .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-dim);
+            display: block; margin-bottom: 8px; font-weight: 500; color: var(--accent);
         }
-
         .form-control {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            border-radius: 10px;
-            color: white;
-            font-family: 'Outfit', sans-serif;
-            font-size: 1rem;
-            transition: 0.3s;
+            width: 100%; padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px; color: #fff; font-size: 1rem; transition: 0.3s;
         }
-
         .form-control:focus {
-            outline: none;
-            border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.1);
+            outline: none; border-color: var(--accent); background: rgba(255,255,255,0.1);
         }
+        select.form-control { cursor: pointer; }
 
-        /* --- Footer --- */
+        /* --- FOOTER --- */
         footer {
-            background: #050410;
-            padding: 4rem 10% 2rem;
-            border-top: 1px solid var(--glass-border);
-            text-align: center;
+            padding: 40px 0; text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.2);
         }
+        .footer-credit { margin-top: 15px; font-size: 0.9rem; color: #888; }
+        .dev-link { color: var(--accent); text-decoration: none; font-weight: 600; }
 
-        .footer-content {
-            margin-bottom: 2rem;
+        /* --- ANIMATION CLASSES --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        .dev-credit {
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 2rem;
-            font-size: 0.9rem;
-            color: var(--text-dim);
-        }
-
-        .dev-credit a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        /* --- Mobile Responsive --- */
+        /* --- MOBILE RESPONSIVE --- */
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .about-container { grid-template-columns: 1fr; }
-            .nav-links { display: none; } /* Simplified for demo */
-            section { padding: 4rem 5%; }
-        }
+            .hero h1 { font-size: 2.5rem; }
+            
+            .hamburger {
+                display: block;
+            }
 
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--accent);
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            color: white;
-            transform: translateX(200%);
-            transition: transform 0.5s ease;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-        }
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-        .toast.show {
-            transform: translateX(0);
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 60px; 
+                gap: 0;
+                flex-direction: column;
+                background: #0f0c29;
+                width: 100%;
+                height: calc(100vh - 60px);
+                text-align: center;
+                transition: 0.3s;
+                padding-top: 50px;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            .timeline::after { left: 31px; }
+            .schedule-card { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .schedule-card.left, .schedule-card.right { left: 0; text-align: left; }
+            .schedule-card.left::after, .schedule-card.right::after { left: 21px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Loader -->
-    <div id="loader">
-        <div class="spinner"></div>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
     </div>
 
     <!-- Background Elements -->
-    <div class="bg-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-    </div>
+    <div class="bg-animation"></div>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
 
     <!-- Navigation -->
-    <nav>
-        <div class="logo">MR. TUTOR</div>
-        <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#schedule">Schedule</a>
-            <a href="#certifications">Credentials</a>
-            <a href="#apply" style="color: var(--accent);">Join Class</a>
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="#home" class="logo">M.R. <span>Akalanka</span></a>
+            
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link-item">Home</a></li>
+                <li><a href="#about" class="nav-link-item">About</a></li>
+                <li><a href="#schedule" class="nav-link-item">Schedule</a></li>
+                <li><a href="#certs" class="nav-link-item">Certs</a></li>
+                <li><a href="#apply" class="nav-link-item">Join Class</a></li>
+                <li><a href="https://wa.me/94775762639" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a></li>
+            </ul>
+
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header id="hero">
-        <div class="hero-content fade-in-up">
-            <h1>Unlock Your Potential with <br><span>M.R. Akalanka Ranasinghe</span></h1>
-            <p>Expert Private Tutoring for Grade 10, Grade 11 & Primary Grades. Experience government-qualified teaching right at your fingertips.</p>
-            <a href="#apply" class="btn-glow">Apply Now <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-    </header>
-
-    <main>
-        <!-- About Section -->
-        <section id="about">
-            <div class="section-title fade-in-up"><span>About The Tutor</span></div>
-            <div class="about-container">
-                <div class="tutor-img-wrapper glass-card fade-in-up">
-                    <!-- Using the provided photo URL -->
-                    <img src="https://massive-moccasin-ru6shfmyqy.edgeone.app/photo_6282646545794534702_y.jpg" alt="M.R. Akalanka Ranasinghe" class="tutor-img">
-                </div>
-                <div class="about-text fade-in-up">
-                    <div class="role-badge"><i class="fa-solid fa-chalkboard-user"></i> Private Tutor</div>
-                    <h3>M.R. Akalanka Ranasinghe</h3>
-                    <p style="color: var(--text-dim); margin-bottom: 1.5rem;">
-                        Dedicated to fostering academic excellence through personalized learning strategies. With a strong foundation in government school teaching and a passion for student success, I provide a comprehensive educational experience tailored to individual needs.
-                    </p>
-                    
-                    <div class="glass-card">
-                        <h4 style="margin-bottom: 1rem; color: var(--accent);">Teaching Philosophy</h4>
-                        <p style="font-size: 0.9rem;">
-                            Combining traditional values with modern pedagogical techniques to ensure every student grasps complex concepts with ease.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Schedule Section -->
-        <section id="schedule">
-            <div class="section-title fade-in-up"><span>Class Schedule</span></div>
-            <div class="schedule-grid">
-                <!-- Grade 10/11 Card -->
-                <div class="glass-card time-card fade-in-up">
-                    <div class="time-icon"><i class="fa-solid fa-book-open"></i></div>
-                    <h3>Grade 10 & 11</h3>
-                    <p style="color: var(--text-dim);">Advanced theory & revision</p>
-                    <div class="time-badge"><i class="fa-regular fa-calendar"></i> Wednesday Evenings</div>
-                    <div class="time-badge" style="margin-top: 0.5rem;"><i class="fa-regular fa-clock"></i> 3:30 PM – 6:30 PM</div>
-                </div>
-
-                <!-- Primary Card -->
-                <div class="glass-card time-card fade-in-up" style="transition-delay: 0.2s;">
-                    <div class="time-icon"><i class="fa-solid fa-shapes"></i></div>
-                    <h3>Primary Grades</h3>
-                    <p style="color: var(--text-dim);">Foundation building & fun learning</p>
-                    <div class="time-badge"><i class="fa-regular fa-calendar"></i> Friday Evenings</div>
-                    <div class="time-badge" style="margin-top: 0.5rem;"><i class="fa-regular fa-clock"></i> Flexible Timing</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tech Stack / Backend Logic Section -->
-        <!-- This fulfills the requirement to showcase Python, C++, and SQL logic -->
-        <section id="tech-stack">
-            <div class="section-title fade-in-up"><span>System Architecture</span></div>
-            <p style="text-align: center; color: var(--text-dim); margin-bottom: 2rem;" class="fade-in-up">
-                Our educational platform is powered by a robust backend design. Below are the logic modules used for data management and processing.
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <!-- UPDATED: Using specific photo URL and adjusted object-position -->
+            <img src="https://z-cdn-media.chatglm.cn/files/cb06138a-9792-428b-98a9-5d786e214b66.jpg?auth_key=1868275705-b6e259323e334239b6cfd4cc144d524d-0-ff73695ccf73d365c97a9558f6e71cc8" alt="M.R. Akalanka Ranasinghe" class="profile-img">
+            <h1>M.R. Akalanka Ranasinghe</h1>
+            <!-- UPDATED: Role text -->
+            <h2>Private English Tutor</h2>
+            <p style="margin-bottom: 20px; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto; color: #ddd;">
+                Expert guidance in English Language & Literature. Improving grammar, essay writing skills, and spoken English with 5 years of professional experience.
             </p>
-            
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="#apply" class="cta-btn">Join My Class <i class="fas fa-arrow-right"></i></a>
+                <a href="https://wa.me/94775762639" target="_blank" class="cta-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3);">
+                    <i class="fab fa-whatsapp"></i> Chat Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Visualization -->
+    <section class="tech-section reveal" id="about">
+        <div class="container">
+            <h3 class="section-title">System Architecture</h3>
             <div class="tech-grid">
-                <!-- SQL Schema -->
-                <div class="code-window fade-in-up">
-                    <div class="window-header">
-                        <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
-                        <span style="font-size: 0.8rem; margin-left: 10px; color: #aaa;">schema.sql</span>
-                    </div>
-                    <div class="code-content">
-<span class="kw">CREATE TABLE</span> Students (
-    student_id <span class="kw">INT PRIMARY KEY</span>,
-    full_name <span class="kw">VARCHAR</span>(100),
-    grade <span class="kw">VARCHAR</span>(10),
-    phone_number <span class="kw">VARCHAR</span>(15),
-    enrollment_date <span class="kw">DATE</span>
-);
+                <div class="tech-card glass">
+                    <i class="fab fa-python tech-icon"></i>
+                    <h4>Backend Logic</h4>
+                    <p>Python (Flask/Django Ready)</p>
+                    <code class="code-snippet">
+                        def process_application(data):<br>
+                        &nbsp;&nbsp;validate(data)<br>
+                        &nbsp;&nbsp;return "Pending"
+                    </code>
+                </div>
+                <div class="tech-card glass">
+                    <i class="fas fa-code tech-icon"></i>
+                    <h4>Core Engine</h4>
+                    <p>High-Performance C++</p>
+                    <code class="code-snippet">
+                        #include &lt;iostream&gt;<br>
+                        void optimize_path() {<br>
+                        &nbsp;&nbsp;// Algorithm logic<br>
+                        }
+                    </code>
+                </div>
+                <div class="tech-card glass">
+                    <i class="fas fa-database tech-icon"></i>
+                    <h4>Database Design</h4>
+                    <p>SQL Schema Management</p>
+                    <code class="code-snippet">
+                        CREATE TABLE students (<br>
+                        id INT PRIMARY KEY,<br>
+                        name VARCHAR(255)<br>
+                        );
+                    </code>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px; color: #aaa;">
+                <small>*System visualization represents the future-ready backend architecture.</small>
+            </div>
+        </div>
+    </section>
 
-<span class="kw">INSERT INTO</span> Students 
-<span class="kw">VALUES</span> (101, <span class="str">'John Doe'</span>, <span class="str">'Grade 10'</span>, <span class="str">'0771234567'</span>, <span class="kw">NOW</span>());
+    <!-- Schedule Section -->
+    <section class="schedule-section reveal" id="schedule">
+        <div class="container">
+            <h3 class="section-title">Class Schedule</h3>
+            <div class="timeline">
+                <div class="schedule-card left">
+                    <div class="schedule-content glass">
+                        <span class="time-badge">Wednesday Evenings</span>
+                        <h3>Year 10 & Year 11</h3>
+                        <p><i class="far fa-clock"></i> 3:30 PM – 6:30 PM</p>
+                        <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">Comprehensive English theory and literature revision for O/L students.</p>
                     </div>
                 </div>
-
-                <!-- Python Logic -->
-                <div class="code-window fade-in-up" style="transition-delay: 0.2s;">
-                    <div class="window-header">
-                        <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
-                        <span style="font-size: 0.8rem; margin-left: 10px; color: #aaa;">api_handler.py</span>
-                    </div>
-                    <div class="code-content">
-<span class="com"># Backend Logic for Application Processing</span>
-<span class="kw">def</span> <span class="fn">process_application</span>(data):
-    <span class="kw">if</span> validate_phone(data[<span class="str">'phone'</span>]):
-        student = Student(data)
-        db.save(student)
-        <span class="kw">return</span> {<span class="str">"status"</span>: <span class="str">"success"</span>}
-    <span class="kw">else</span>:
-        <span class="kw">return</span> {<span class="str">"status"</span>: <span class="str">"invalid_phone"</span>}
-
-<span class="com"># API Endpoint</span>
-@app.route(<span class="str">'/apply'</span>, methods=[<span class="str">'POST'</span>])
-<span class="kw">def</span> <span class="fn">apply</span>():
-    <span class="kw">return</span> process_application(request.json)
-                    </div>
-                </div>
-
-                <!-- C++ Logic -->
-                <div class="code-window fade-in-up" style="transition-delay: 0.4s;">
-                    <div class="window-header">
-                        <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
-                        <span style="font-size: 0.8rem; margin-left: 10px; color: #aaa;">validator.cpp</span>
-                    </div>
-                    <div class="code-content">
-<span class="com">// High-performance seat availability check</span>
-<span class="kw">bool</span> <span class="fn">checkSeatAvailability</span>(<span class="kw">int</span> current) {
-    <span class="kw">const int</span> MAX_CAPACITY = 30;
-    
-    <span class="kw">if</span> (current >= MAX_CAPACITY) {
-        <span class="kw">return false</span>; <span class="com">// Class Full</span>
-    }
-    
-    <span class="com">// Increment seat counter</span>
-    current++; 
-    <span class="kw">return true</span>;
-}
+                <div class="schedule-card right">
+                    <div class="schedule-content glass">
+                        <span class="time-badge">Friday Evenings</span>
+                        <h3>Primary Grades</h3>
+                        <p><i class="far fa-clock"></i> Flexible Timing</p>
+                        <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">Building strong foundations in grammar and reading for younger students.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Certifications Section -->
-        <section id="certifications">
-            <div class="section-title fade-in-up"><span>Certifications & Experience</span></div>
+    <!-- Certifications Section -->
+    <section class="cert-section reveal" id="certs">
+        <div class="container">
+            <h3 class="section-title">Qualifications & Experience</h3>
             <div class="cert-grid">
-                <div class="glass-card cert-item fade-in-up">
-                    <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
+                <div class="cert-item glass">
+                    <i class="fas fa-chalkboard-teacher cert-icon"></i>
                     <div>
-                        <h4>Diploma Qualified</h4>
-                        <p style="font-size: 0.9rem; color: var(--text-dim);">Completed specialized teaching diploma</p>
+                        <h4>Teaching Experience</h4>
+                        <p>5 Years of dedicated tutoring.</p>
                     </div>
                 </div>
-                <div class="glass-card cert-item fade-in-up" style="transition-delay: 0.2s;">
-                    <div class="cert-icon"><i class="fa-solid fa-school"></i></div>
+                <div class="cert-item glass">
+                    <i class="fas fa-school cert-icon"></i>
                     <div>
-                        <h4>Govt. School Teacher</h4>
-                        <p style="font-size: 0.9rem; color: var(--text-dim);">Currently teaching in a government school</p>
+                        <h4>Professional Background</h4>
+                        <p>Currently teaching in a Government School.</p>
                     </div>
                 </div>
-                <div class="glass-card cert-item fade-in-up" style="transition-delay: 0.4s;">
-                    <div class="cert-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                <div class="cert-item glass">
+                    <i class="fas fa-graduation-cap cert-icon"></i>
                     <div>
-                        <h4>5 Years Experience</h4>
-                        <p style="font-size: 0.9rem; color: var(--text-dim);">Proven track record of results</p>
+                        <h4>Education</h4>
+                        <p>Successfully completed Diploma.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Application Form Section -->
-        <section id="apply">
-            <div class="glass-card fade-in-up">
-                <div style="text-align: center; margin-bottom: 2rem;">
-                    <h2 style="margin-bottom: 0.5rem;">Join The Class</h2>
-                    <p style="color: var(--text-dim);">Fill out the form below to apply via WhatsApp.</p>
-                </div>
-                
+    <!-- Application Section -->
+    <section class="apply-section reveal" id="apply">
+        <div class="container">
+            <h3 class="section-title">Join My Class</h3>
+            <div class="form-container glass">
                 <form id="applicationForm">
                     <div class="form-group">
-                        <label>Student Name</label>
-                        <input type="text" id="sName" class="form-control" placeholder="Enter student name" required>
+                        <label for="name">Student Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter full name" required>
                     </div>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                        <div class="form-group">
-                            <label>Grade</label>
-                            <select id="sGrade" class="form-control">
-                                <option value="Grade 10">Grade 10</option>
-                                <option value="Grade 11">Grade 11</option>
-                                <option value="Primary">Primary Grades</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>School</label>
-                            <input type="text" id="sSchool" class="form-control" placeholder="Current School" required>
-                        </div>
-                    </div>
-
                     <div class="form-group">
-                        <label>Parent / Student Contact Number</label>
-                        <input type="tel" id="sPhone" class="form-control" placeholder="07xxxxxxxx" required>
+                        <label for="grade">Grade</label>
+                        <select id="grade" class="form-control" required>
+                            <option value="" disabled selected>Select Grade</option>
+                            <option value="Grade 6-9">Primary (Grade 6-9)</option>
+                            <option value="Year 10">Year 10</option>
+                            <option value="Year 11">Year 11</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
-
                     <div class="form-group">
-                        <label>Message / Reason for joining</label>
-                        <textarea id="sMessage" class="form-control" rows="4" placeholder="I want to improve my math skills..."></textarea>
+                        <label for="school">School</label>
+                        <input type="text" id="school" class="form-control" placeholder="Current school name" required>
                     </div>
-
-                    <button type="submit" class="btn-glow" style="width: 100%; border: none; cursor: pointer; font-size: 1.1rem;">
-                        <i class="fa-brands fa-whatsapp"></i> Apply via WhatsApp
+                    <div class="form-group">
+                        <label for="contact">Parent / Student Contact Number</label>
+                        <input type="tel" id="contact" class="form-control" placeholder="e.g., 077xxxxxxx" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message / Reason for joining</label>
+                        <textarea id="message" rows="4" class="form-control" placeholder="Briefly describe your requirements..."></textarea>
+                    </div>
+                    <button type="submit" class="cta-btn" style="width: 100%;">
+                        <i class="fab fa-whatsapp"></i> Apply via WhatsApp
                     </button>
+                    <p style="text-align: center; margin-top: 15px; font-size: 0.8rem; color: #aaa;">
+                        *No data is stored on this server. You will be redirected to WhatsApp to send the application securely.
+                    </p>
                 </form>
             </div>
-        </section>
-
-        <!-- Quick Contact Section -->
-        <section id="contact" style="text-align: center; padding-bottom: 2rem;">
-            <p style="margin-bottom: 1rem;">Or contact directly for inquiries</p>
-            <a href="http://wa.me//+94775762639" target="_blank" class="btn-glow">
-                <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
-            </a>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <h3>M.R. Akalanka Ranasinghe</h3>
-            <p style="color: var(--text-dim);">Private Tutor | Education Excellence</p>
-            <div style="margin-top: 1rem;">
-                <a href="http://wa.me//+94775762639" style="color: white; font-size: 1.5rem; margin: 0 10px;"><i class="fa-brands fa-whatsapp"></i></a>
+        <div class="container">
+            <h3 style="color: #fff;">M.R. Akalanka Ranasinghe</h3>
+            <p><i class="fab fa-whatsapp"></i> +94 77 576 2639</p>
+            <div class="footer-credit">
+                <p>&copy; 2023 All Rights Reserved.</p>
+                <p>Developed by <a href="https://t.me/Crypto_RIV" target="_blank" class="dev-link">Shenal Anuhas</a></p>
+                <p style="font-size: 0.8rem; margin-top: 5px;">Contact: t.me//Crypto_RIV</p>
             </div>
-        </div>
-        
-        <div class="dev-credit">
-            <p>© 2023 All Rights Reserved.</p>
-            <p style="margin-top: 0.5rem;">Developed by <strong>Shenal Anuhas</strong></p>
-            <a href="t.me//Crypto_RIV" target="_blank"><i class="fa-brands fa-telegram"></i> t.me//Crypto_RIV</a>
         </div>
     </footer>
 
-    <!-- Toast Notification Element -->
-    <div id="toast" class="toast">
-        <i class="fa-solid fa-check-circle" style="color: var(--accent); font-size: 1.5rem;"></i>
-        <div>
-            <h4 style="margin:0;">Redirecting...</h4>
-            <p style="margin:0; font-size: 0.8rem;">Opening WhatsApp</p>
-        </div>
-    </div>
-
-    <!-- JavaScript Logic -->
+    <!-- JavaScript Interactivity -->
     <script>
-        // Loader Logic
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Preloader Animation
+            const preloader = document.getElementById('preloader');
             setTimeout(() => {
-                loader.style.opacity = '0';
+                preloader.style.opacity = '0';
                 setTimeout(() => {
-                    loader.style.display = 'none';
+                    preloader.style.display = 'none';
                 }, 500);
-            }, 1500); // 1.5s simulated load time
-        });
+            }, 1500);
 
-        // Scroll Animation (Intersection Observer)
-        const observerOptions = {
-            threshold: 0.1
-        };
+            // 2. Scroll Animations (Intersection Observer)
+            const observerOptions = { threshold: 0.1 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+            // 3. MOBILE NAVIGATION LOGIC
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const navItems = document.querySelectorAll('.nav-link-item'); 
+
+            // Toggle Menu
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.fade-in-up').forEach(el => {
-            observer.observe(el);
-        });
+            // Close menu when a link is clicked
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
 
-        // Form Handling -> WhatsApp Redirect
-        document.getElementById('applicationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+            // 4. Form Handling & WhatsApp Redirection
+            const form = document.getElementById('applicationForm');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault(); 
+                const name = document.getElementById('name').value;
+                const grade = document.getElementById('grade').value;
+                const school = document.getElementById('school').value;
+                const contact = document.getElementById('contact').value;
+                const message = document.getElementById('message').value;
 
-            // 1. Gather Data
-            const name = document.getElementById('sName').value;
-            const grade = document.getElementById('sGrade').value;
-            const school = document.getElementById('sSchool').value;
-            const phone = document.getElementById('sPhone').value;
-            const message = document.getElementById('sMessage').value;
+                const text = `*New Class Application*%0A%0A` +
+                             `👤 *Name:* ${name}%0A` +
+                             `🎓 *Grade:* ${grade}%0A` +
+                             `🏫 *School:* ${school}%0A` +
+                             `📞 *Contact:* ${contact}%0A` +
+                             `💬 *Message:* ${message}`;
 
-            // 2. Format Message
-            const formattedMessage = 
-`*New Class Application*
-----------------------
-*Name:* ${name}
-*Grade:* ${grade}
-*School:* ${school}
-*Contact:* ${phone}
-*Message:* ${message}
-----------------------
-_Sent via Website_`;
+                const whatsappURL = `https://wa.me/94775762639?text=${text}`;
+                
+                // Visual feedback
+                const submitBtn = form.querySelector('button');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Opening WhatsApp...';
+                submitBtn.style.background = '#00ff88';
+                submitBtn.style.color = '#000';
 
-            // 3. Show Feedback (Toast)
-            const toast = document.getElementById('toast');
-            toast.classList.add('show');
-
-            // 4. Redirect to WhatsApp
-            // Note: Standard format is https://wa.me/NUMBER?text=ENCODED_TEXT
-            // We strip symbols from the number just in case, though user provided +94...
-            const rawNumber = "94775762639"; 
-            const whatsappUrl = `https://wa.me/${rawNumber}?text=${encodeURIComponent(formattedMessage)}`;
-
-            setTimeout(() => {
-                window.open(whatsappUrl, '_blank');
-                toast.classList.remove('show');
-            }, 2000);
+                setTimeout(() => {
+                    window.open(whatsappURL, '_blank');
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = '';
+                        submitBtn.style.color = '';
+                        form.reset();
+                    }, 2000);
+                }, 1000);
+            });
         });
     </script>
 </body>
-</html>
+        </html>
