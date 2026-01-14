@@ -174,6 +174,9 @@
             transition: 0.3s;
             position: relative;
             font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         .nav-links li a:hover { color: var(--accent); }
         .nav-links li a::after {
@@ -187,6 +190,12 @@
             transition: 0.3s;
         }
         .nav-links li a:hover::after { width: 100%; }
+
+        /* Highlight the Chatroom button slightly */
+        .nav-links li a.chat-btn {
+            color: var(--accent);
+            font-weight: 600;
+        }
 
         /* Hamburger Menu (Mobile) */
         .hamburger {
@@ -436,6 +445,8 @@
                 <li><a href="#schedule" class="nav-link-item">Schedule</a></li>
                 <li><a href="#certs" class="nav-link-item">Certs</a></li>
                 <li><a href="#apply" class="nav-link-item">Join Class</a></li>
+                <!-- ADDED CHATROOM BUTTON HERE -->
+                <li><a href="https://shenaldox.github.io/chatroomaka/" target="_blank" class="nav-link-item chat-btn"><i class="fas fa-comments"></i> Chatroom</a></li>
                 <li><a href="https://wa.me/94775762639" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a></li>
             </ul>
 
@@ -450,7 +461,6 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container hero-content">
-            <!-- Using specific photo URL -->
             <img src="https://z-cdn-media.chatglm.cn/files/cb06138a-9792-428b-98a9-5d786e214b66.jpg?auth_key=1868275705-b6e259323e334239b6cfd4cc144d524d-0-ff73695ccf73d365c97a9558f6e71cc8" alt="M.R. Akalanka Ranasinghe" class="profile-img">
             <h1>M.R. Akalanka Ranasinghe</h1>
             <h2>Private English Tutor</h2>
@@ -544,7 +554,6 @@
                     <i class="fas fa-chalkboard-teacher cert-icon"></i>
                     <div>
                         <h4>Teaching Experience</h4>
-                        <!-- UPDATED HERE TO 10 YEARS -->
                         <p>10 Years of dedicated tutoring.</p>
                     </div>
                 </div>
@@ -581,8 +590,8 @@
                         <select id="grade" class="form-control" required>
                             <option value="" disabled selected>Select Grade</option>
                             <option value="Grade 6-9">Primary (Grade 6-9)</option>
-                            <option value="Grade 10">Year 10</option>
-                            <option value="Grade 11">Year 11</option>
+                            <option value="Year 10">Year 10</option>
+                            <option value="Year 11">Year 11</option>
                             <option value="Other">Other</option>
                         </select>
                     </div>
